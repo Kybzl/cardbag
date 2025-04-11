@@ -344,7 +344,7 @@ function resetGrid() {
 
                 // 类型判断逻辑
                 let type;
-                if (state.draws >= 6 && state.tearCount < 2) {
+                if (state.draws >= 7 && state.tearCount < 2) {
                     type = 'tear';
                 } else {
                     const rand = Math.random() * 100;
@@ -382,20 +382,27 @@ function resetGrid() {
         }
 
         // 强化强制撕开检查
-        function checkForcedTear() {
-            if (state.tearCount >= 2) return;
 
-            if (state.draws === 7 && state.tearCount === 0) {
-                [7,8].forEach(i => forceTear(i));
-            } 
-            else if (state.draws === 8 && state.tearCount === 1) {
-                forceTear(8);
-            }
-        }
+function checkForcedTear() {
+    if (state.tearCount >= 2) return;
+
+    // 改为仅当剩余未撕开格子数 ≤ 需要撕开次数时触发
+    const remaining = 9 - state.draws;
+    const needed = 2 - state.tearCount;
+
+    if (remaining <= needed) {
+        const indexes = Array.from({length: 9}, (_,i)=>i)
+            .filter(i => !state.cells[i]);
+        indexes.slice(0, needed).forEach(i => forceTear(i));
+    }
+}
 
          // 加强版强制撕开逻辑
         function forceTear(index) {
             if (state.tearCount >= 2 || state.cells[index]) return;
+
+             // 添加校验确保不超过最大次数
+            const maxForce = 9 - state.draws - (2 - state.tearCount);
 
             const cell = document.getElementById('grid').children[index];
             cell.style.transition = 'all 0.3s';
@@ -547,7 +554,7 @@ function resetGrid() {
                 }, 300);
             });
         }
-
+//
         // 初始化游戏
         initGrid();
         updateDisplay();
