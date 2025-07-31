@@ -2,30 +2,28 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>球星卡包抽奖</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-    /* 在样式表开头添加全局触摸控制 */
-    html,
-    body {
-        touch-action: manipulation;
-        -webkit-touch-callout: none;
-        -webkit-user-select: none;
-        user-select: none;
-	padding-bottom: 50px; /* 为页脚留出空间 */
-    }
+        /* 样式保持不变 */
+        html,
+        body {
+            touch-action: manipulation;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
+            padding-bottom: 50px;
+        }
 
-    /* 为所有可交互元素添加精细控制 */
-    .cell,
-    button {
-        touch-action: manipulation;
-    }
+        .cell,
+        button {
+            touch-action: manipulation;
+        }
 
-    /* 移除移动端长按菜单 */
-    * {
-        -webkit-tap-highlight-color: transparent;
-    }
+        * {
+            -webkit-tap-highlight-color: transparent;
+        }
 
         .container {
             display: grid;
@@ -34,6 +32,7 @@
             margin: 20px auto;
             width: 340px;
         }
+
         .cell {
             width: 100px;
             height: 100px;
@@ -70,27 +69,6 @@
             cursor: pointer;
         }
 
-        .container {
-            display: grid;
-            grid-template-columns: repeat(3, 100px);
-            gap: 10px;
-            margin: 20px auto;
-            width: 340px;
-        }
-
-        .cell {
-            width: 100px;
-            height: 100px;
-            border: 2px solid #333;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            background-color: #fff;
-            transition: all 0.3s;
-        }
-
-        /* 新增仓库样式 */
         .warehouse {
             max-width: 400px;
             margin: 20px auto;
@@ -136,7 +114,6 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         }
 
-        /* 优化翻转动画 */
         @keyframes flipIn {
             0% {
                 transform: rotateY(90deg);
@@ -152,7 +129,6 @@
             animation: flipIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
         }
 
-        /* 新增加载指示器 */
         .loading::after {
             content: "";
             position: absolute;
@@ -168,62 +144,59 @@
             to { transform: rotate(360deg); }
         }
 
-@media (hover: none) {
-    .cell {
-        min-height: 80px;
-        touch-action: manipulation;
-    }
-}
-
-    /* 优化过渡属性 */
-    .cell {
-        will-change: transform, opacity;
-        transition: 
-            transform 0.15s cubic-bezier(0.4, 0, 0.2, 1),
-            background-color 0.3s ease,
-            opacity 0.3s ease;
-        backface-visibility: hidden;
-        -webkit-backface-visibility: hidden;
-    }
-
-    /* 优化按钮点击反馈 */
-    button {
-        transition: opacity 0.2s ease;
-        -webkit-tap-highlight-color: transparent;
-    }
-
-    /* 移除移动端点击阴影 */
-    @media (hover: none) {
-        .cell.hover-effect:hover {
-            box-shadow: none;
-            transform: none;
+        @media (hover: none) {
+            .cell {
+                min-height: 80px;
+                touch-action: manipulation;
+            }
         }
-    }
 
-       .footer {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        width: 100%;
-        max-width: 100%;
-        text-align: center;
-        padding: 15px;
-        background: rgba(0, 0, 0, 0.7);
-        border-radius: 0;
-        border: none;
-        backdrop-filter: blur(5px);
-        margin-top: 0;
-        z-index: 10;
-        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
-        color: #fdbb2d;
-        font-size: 15px;
-        font-weight: bold;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 10px;
-    }
+        .cell {
+            will-change: transform, opacity;
+            transition: 
+                transform 0.15s cubic-bezier(0.4, 0, 0.2, 1),
+                background-color 0.3s ease,
+                opacity 0.3s ease;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+
+        button {
+            transition: opacity 0.2s ease;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        @media (hover: none) {
+            .cell.hover-effect:hover {
+                box-shadow: none;
+                transform: none;
+            }
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            max-width: 100%;
+            text-align: center;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 0;
+            border: none;
+            backdrop-filter: blur(5px);
+            margin-top: 0;
+            z-index: 10;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+            color: #fdbb2d;
+            font-size: 15px;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
         
         .footer::before {
             content: "";
@@ -239,24 +212,24 @@
             color: #b21f1f;
             font-size: 18px;
         }
-
     </style>
 </head>
 <body>
-    <div class="status">
-        <p>当前能力值：<span id="ability">96</span></p>
-        <p>当前概率：<span id="probability">5%</span></p>
-        <p>已抽次数：<span id="draw-count">0</span></p>
-    </div>
+    <div class="game-container">
+        <div class="status">
+            <p>当前能力值：<span id="ability" class="glow">96</span></p>
+            <p>当前概率：<span id="probability">5%</span></p>
+            <p>已抽次数：<span id="draw-count">0</span> | 撕开：<span id="tear-count">0</span></p>
+        </div>
 
     <div class="container" id="grid"></div>
         
-	<div class="status">
+    <div class="status">
         <button class="btn pulse" onclick="resetGame()">重置卡包</button>
-	</div>        
+    </div> 
 
         <div class="warehouse">
-            <h3>📦 球员仓库（最近20条）</h3>
+            <h3><i class="fas fa-warehouse"></i> 球员仓库（最近20条）</h3>
             <div id="warehouse-list"></div>
         </div>
     </div>
@@ -272,77 +245,42 @@
         
         // 卡片池数据
         const cardPool = {
-            101: ['双增能卡纳瓦罗', '双增能埃托奥'],
+            101: ['双增能卡纳瓦罗', '双增能埃托奥', '双增能里杰卡尔德', '双增能菲戈'],
             100: ["双增能坎通纳", "双增能德科", "单增能克鲁伊夫", "双增能图拉姆", 
-                 "双增能梅西", "单增能世界杯梅西",  "双增能范巴斯滕","单增能普拉蒂尼", 
-                 "双增能卡洛斯", "双增能罗纳尔迪尼奥", "单增能济科","双增能迪达",
-                 '双增能鲁梅尼格', '双增能舒梅切尔', '双增能苏亚雷斯', '双增能内马尔',
-                 '双增能卡卡','双增能布冯', '双增能拉姆', '双增能托蒂', 
-                 '双增能古利特', '双增能范巴斯滕', '双增能普拉蒂尼', '双增能阿扎尔', 
-                 '双增能基耶利尼', '双增能布斯克茨', '双增能里杰卡尔德','双增能菲戈','双增能贝尔巴托夫'
-                 ],
+                 "双增能梅西", "单增能世界杯梅西",  "双增能范巴斯滕",
+                 "单增能普拉蒂尼", "双增能卡洛斯", "双增能罗纳尔迪尼奥", "单增能济科","双增能迪达",, '双增能鲁梅尼格', '双增能舒梅切尔', '双增能苏亚雷斯', '双增能内马尔', '双增能卡卡', '双增能布冯', '双增能拉姆', '双增能托蒂', '双增能古利特', '双增能范巴斯滕', '双增能普拉蒂尼', '双增能阿扎尔', '双增能基耶利尼', '双增能布斯克茨'],
             99: ["双增能费雷尔", "单增能皮耶罗", "单增能皮尔洛", "单增能舍甫琴科",
-                "单增能马克莱莱", "单增能贝克汉姆", "单增能托蒂","单增能比利亚",
-                "单增能博格坎普","单增能德罗巴","单增能贝尔","单增能兰帕德",
-                "单增能里贝里","单增能贝隆","单增能鲁梅尼格","单增能卡恩",
-                "单增能马尔蒂尼","单增能维埃拉","单增能内德维德","单增能舒梅切尔",
-                "单增能切赫","单增能巴乔","双增能赫内斯",'双增能马凯',
-                "双增能费雷尔", "单增能皮耶罗", "单增能皮尔洛", "单增能舍甫琴科",
-                "单增能马克莱莱", "单增能贝克汉姆", "单增能托蒂","单增能比利亚",
-                "单增能博格坎普","单增能德罗巴","单增能贝尔","单增能兰帕德",
-                "单增能里贝里","单增能贝隆","单增能鲁梅尼格","单增能卡恩",
-                "单增能马尔蒂尼","单增能维埃拉","单增能内德维德","单增能舒梅切尔",
-                "单增能切赫","单增能巴乔"],
-            98: ["双增能博扬", "单增能因扎吉", "单增能巴蒂斯图塔", "单增能古蒂",
-                "单增能伊涅斯塔","单增能阿尔贝蒂尼","单增能西多夫","单增能马克莱莱",
-                "单增能弗兰","单增能戴维斯","单增能埃德米尔森","单增能托雷斯",
-                "单增能卡卡","单增能劳尔",'单增能罗马里奥','单增能卡西',
-                '单增能费雷尔','双增能科斯塔库塔','单增能阿隆索','单增能兰帕德',
-                '单增能贝克汉姆','单增能西多夫','单增能贝克汉姆','单增能里瓦尔多',
-                "单增能马克莱莱", "单增能贝克汉姆", "单增能托蒂","单增能比利亚",
-                "单增能博格坎普","单增能德罗巴","单增能弗莱彻","单增能西曼",
-                "单增能埃尔文","单增能德尼尔森","单增能斯托伊科维奇","单增能约克",
-                "单增能埃德米尔森","单增能佩蒂特","单增能莫伦特斯","双增能切尔西托雷斯",
-                "单增能永贝里","单增能扬科勒"],
-            97: ["单增能科斯塔库塔","单增能贝莱蒂","单增能利扎拉祖","单增能罗布森",
-                "单增能皮萨罗","单增能范比滕","单增能弗莱彻","单增能西曼",
-                "单增能埃尔文","单增能德尼尔森","单增能斯托伊科维奇","单增能约克",
-                "单增能埃德米尔森","单增能佩蒂特","单增能莫伦特斯","双增能切尔西托雷斯",
-                "单增能永贝里","单增能扬科勒","单增能萨维奥拉","单增能迪克森",
-                "单增能安布罗西尼","单增能桑托斯内马尔","单增能塞尔吉奥","双增能瓜迪奥拉",
-                "单增能瓜迪奥拉","单增能默特萨克","单增能范德法特","单增能多纳多尼",
-                "单增能罗马里奥","单增能阿隆索","单增能罗伯托"],
+                "单增能马克莱莱", "单增能贝克汉姆", "单增能托蒂","单增能比利亚","单增能博格坎普","单增能德罗巴","单增能贝尔","单增能兰帕德","单增能里贝里","单增能贝隆","单增能鲁梅尼格","单增能卡恩","单增能马尔蒂尼","单增能维埃拉","单增能内德维德","单增能舒梅切尔","单增能切赫","单增能巴乔","双增能赫内斯",/* 其他99分球员 */],
+            98: ["双增能博扬", "单增能因扎吉", "单增能巴蒂斯图塔", "单增能古蒂","单增能伊涅斯塔","单增能阿尔贝蒂尼","单增能西多夫","单增能马克莱莱","单增能弗兰","单增能戴维斯","单增能埃德米尔森","单增能托雷斯","单增能卡卡","单增能劳尔", /* 其他98分球员 */],
+            97: ["单增能科斯塔库塔","单增能贝莱蒂","单增能利扎拉祖","单增能罗布森","单增能皮萨罗","单增能范比滕","单增能弗莱彻","单增能西曼","单增能埃尔文","单增能德尼尔森","单增能斯托伊科维奇","单增能约克","单增能埃德米尔森","单增能佩蒂特","单增能莫伦特斯","双增能切尔西托雷斯","单增能永贝里","单增能扬科勒","单增能萨维奥拉","单增能迪克森","单增能安布罗西尼","单增能桑托斯内马尔","单增能塞尔吉奥","双增能瓜迪奥拉","单增能瓜迪奥拉","单增能默特萨克","单增能范德法特","单增能多纳多尼","单增能罗马里奥","单增能阿隆索","单增能罗伯托", /* 其他97分球员 */],
             96: ["史诗瓜迪奥拉","史诗吉文","史诗佩尔卡西"]
         };
 
-        // 当前球员列表
         const currentPlayers = [
             '孙兴慜', '哈里·凯恩', '德布劳内', '萨拉赫', '范戴克',
-            '布鲁诺·费尔南德斯', '坎特', '斯特林', '阿诺德', '马内',
-            '拉什福德', '桑乔', '福登', '格拉利什', '詹姆斯',
-            '蒂亚戈', '若日尼奥', '芒特', '卢卡库', '齐耶赫',
-            '吕迪格', '阿斯皮利奎塔', '热苏斯', '津琴科', '洛里',
-            '凯尔·沃克', '马赫雷斯', '京多安', '罗德里', '埃德森', 
-            '迪亚斯', '贝尔纳多·席尔瓦', '菲尔·福登', '卡塞米罗', '瓦拉内',            
-            '桑切斯', '厄德高', '萨卡', '奥巴梅扬', '拉卡泽特',
-            '托马斯·帕尔特伊', '本·怀特', '蒂尔尼', '史密斯·罗', '洛孔加',
-            '富安健洋', '马丁内利', '恩凯蒂亚', '拉姆斯代尔', '霍尔丁',
-            '本泽马', '莫德里奇', '维尼修斯', '库尔图瓦', '阿拉巴',
-            '克罗斯', '巴尔韦德', '罗德里戈', '阿森西奥', '卡马文加',
-            '米利唐', '吕迪格', '纳乔', '卡瓦哈尔', '巴斯克斯',
-            '梅西', '莱万多夫斯基', '佩德里', '加维', '德容',
-            '特尔施特根', '阿劳霍', '克里斯滕森', '孔德', '登贝莱',
-            '费兰·托雷斯', '拉菲尼亚', '凯西', '布斯克茨', '阿尔巴',
-            '格里兹曼', '莫拉塔', '科克', '萨乌尔', '略伦特',
-            '奥布拉克', '希门尼斯', '勒马尔', '卡拉斯科', '德保罗',
-            '费利克斯', '格列兹曼', '苏亚雷斯', '卡瓦尼', '皮克',
-            '阿尔维斯', '普伊格', '尼科', '加西亚', '法蒂',
-            '穆勒', '基米希', '诺伊尔', '萨内', '格纳布里',
-            '戴维斯', '卢卡斯·埃尔南德斯', '帕瓦尔', '格雷茨卡', '马内',
-            '德里赫特', '坎塞洛', '科曼', '索默', '于帕梅卡诺',
-            '哈兰德', '贝林厄姆', '罗伊斯', '布兰特', '阿坎吉',
-            '戴维斯', '卢卡斯·埃尔南德斯', '帕瓦尔', '格雷茨卡', '马内',
-            '德里赫特', '坎塞洛', '科曼', '索默', '于帕梅卡诺'
+                '布鲁诺·费尔南德斯', '坎特', '斯特林', '阿诺德', '马内',
+                '拉什福德', '桑乔', '福登', '格拉利什', '詹姆斯',
+                '蒂亚戈', '若日尼奥', '芒特', '卢卡库', '齐耶赫',
+                '吕迪格', '阿斯皮利奎塔', '热苏斯', '津琴科', '洛里',
+                '凯尔·沃克', '马赫雷斯', '京多安', '罗德里', '埃德森', 
+		'迪亚斯', '贝尔纳多·席尔瓦', '菲尔·福登', '卡塞米罗', '瓦拉内',            
+                '桑切斯', '厄德高', '萨卡', '奥巴梅扬', '拉卡泽特',
+                '托马斯·帕尔特伊', '本·怀特', '蒂尔尼', '史密斯·罗', '洛孔加',
+                '富安健洋', '马丁内利', '恩凯蒂亚', '拉姆斯代尔', '霍尔丁',
+                '本泽马', '莫德里奇', '维尼修斯', '库尔图瓦', '阿拉巴',
+                '克罗斯', '巴尔韦德', '罗德里戈', '阿森西奥', '卡马文加',
+                '米利唐', '吕迪格', '纳乔', '卡瓦哈尔', '巴斯克斯',
+                '梅西', '莱万多夫斯基', '佩德里', '加维', '德容',
+                '特尔施特根', '阿劳霍', '克里斯滕森', '孔德', '登贝莱',
+                '费兰·托雷斯', '拉菲尼亚', '凯西', '布斯克茨', '阿尔巴',
+                '格里兹曼', '莫拉塔', '科克', '萨乌尔', '略伦特',
+                '奥布拉克', '希门尼斯', '勒马尔', '卡拉斯科', '德保罗',
+                '费利克斯', '格列兹曼', '苏亚雷斯', '卡瓦尼', '皮克',
+                '阿尔维斯', '普伊格', '尼科', '加西亚', '法蒂',
+                '穆勒', '基米希', '诺伊尔', '萨内', '格纳布里',
+                '戴维斯', '卢卡斯·埃尔南德斯', '帕瓦尔', '格雷茨卡', '马内',
+                '德里赫特', '坎塞洛', '科曼', '索默', '于帕梅卡诺',
+                '哈兰德', '贝林厄姆', '罗伊斯', '布兰特', '阿坎吉'
         ];
 
         // 游戏状态
@@ -356,7 +294,8 @@
             tearCount: 0,
             cells: Array(9).fill(null),
             opened: false,
-            isDrawing: false  // 新增：处理状态锁
+            isDrawing: false,
+            hasTearInFirstSeven: false
         };
 
         // 仓库记录
@@ -369,27 +308,15 @@
             
             for (let i = 0; i < 9; i++) {
                 const cell = document.createElement('div');
-                cell.className = 'cell';
-                cell.innerHTML = '<div class="card-content">?</div>';
+                cell.className = 'cell hover-effect';
+                cell.innerHTML = '<div class="card-content"></div>';
                 
                 // 添加事件监听器
                 if (isTouchDevice) {
                     cell.ontouchstart = (e) => {
-                        // 防止多点触控
                         if (e.touches.length > 1) return;
-                        
-                        // 添加触摸开始时间记录
                         touchStartTime = Date.now();
-                    };
-                    
-                    cell.ontouchend = (e) => {
-                        // 防止多点触控
-                        if (e.touches.length > 0) return;
-                        
-                        // 确保是短按（小于500ms）
-                        if (Date.now() - touchStartTime < 500) {
-                            drawCard(i);
-                        }
+                        drawCard(i); // 立即响应
                     };
                 } else {
                     cell.onclick = () => drawCard(i);
@@ -404,53 +331,72 @@
             const cells = document.getElementsByClassName('cell');
             Array.from(cells).forEach((cell, index) => {
                 requestAnimationFrame(() => {
-                    cell.className = 'cell';
-                    cell.innerHTML = '<div class="card-content">?</div>';
+                    cell.className = 'cell hover-effect';
+                    cell.innerHTML = '<div class="card-content"></div>';
                     cell.style.cssText = '';
                 });
             });
         }
 
-        // 抽卡函数（添加了状态锁）
+        // 抽卡函数 - 优化响应速度
         async function drawCard(index) {
             // 检查状态锁和游戏条件
             if (state.opened || state.cells[index] || state.isDrawing || state.tearCount >= 2) return;
             
-            // 设置状态锁
             state.isDrawing = true;
-            
             const cell = document.getElementById('grid').children[index];
+            const currentDraw = state.draws + 1;
             
-            // 添加点击反馈
+            // 立即更新UI - 视觉反馈
             cell.classList.add('active');
-            setTimeout(() => cell.classList.remove('active'), 150);
-            
-            // 添加加载状态
             cell.classList.add('loading');
             
-            // 模拟网络请求延迟
-            await new Promise(resolve => setTimeout(resolve, 50));
-            
+            // 处理逻辑 - 减少延迟
             let type;
-            // 处理强制撕开逻辑
-            if (state.draws >= 6 && state.tearCount < 2) {
+            
+            // 特殊规则实现：
+            // 如果前7次中有一次撕开，那么第8次一定不是撕开
+            // 如果前7次中没有撕开，那么第8次和第9次都是撕开
+            if (currentDraw === 8 && state.hasTearInFirstSeven) {
+                // 第8次且前7次有撕开，则不能是撕开
+                type = Math.random() < 0.5 ? 'prob-up' : 'ability-up';
+            } else if (currentDraw === 9 && state.hasTearInFirstSeven) {
+                // 第9次且前7次有撕开，则强制撕开
+                type = 'tear';
+            } else if (currentDraw >= 8 && !state.hasTearInFirstSeven) {
+                // 第8次或第9次且前7次无撕开，则强制撕开
                 type = 'tear';
             } else {
+                // 正常随机逻辑
                 const rand = Math.random() * 100;
                 type = rand < 25 ? 'prob-up' : rand < 65 ? 'ability-up' : 'tear';
             }
             
+            // 记录前7次是否有撕开
+            if (currentDraw <= 7 && type === 'tear') {
+                state.hasTearInFirstSeven = true;
+            }
+            
+            // 更新状态
+            state.cells[index] = type;
+            state.draws = currentDraw;
+            
             // 移除加载状态
             cell.classList.remove('loading');
             
-            state.cells[index] = type;
-            updateCell(index, type);
-            state.draws++;
+            // 更新格子显示
+            cell.classList.add('disabled', type);
+            cell.innerHTML = `
+                <div style="transform: rotateY(180deg); animation: flipIn 0.3s forwards">
+                    ${type === 'prob-up' ? '概率↑' : 
+                     type === 'ability-up' ? '能力↑' : '撕开'}
+                </div>
+            `;
             
             // 更新状态
             if (type === 'ability-up') {
                 if (++state.abilityCount === 2) {
-                    state.ability++;
+                    state.ability = Math.min(state.ability + 1, 101);
                     state.abilityCount = 0;
                 }
             } else if (type === 'prob-up') {
@@ -459,50 +405,32 @@
                     state.probabilityCount = 0;
                 }
             } else if (type === 'tear') {
-                if (++state.tearCount === 2) {
-                    openPack();
-                    // 解锁状态
-                    state.isDrawing = false;
-                    return;
-                }
+                state.tearCount++;
             }
             
+            // 更新显示
             updateDisplay();
-            checkForcedTear();
             
-            // 解锁状态
-            state.isDrawing = false;
-        }
-
-        // 检查是否需要强制撕开
-        function checkForcedTear() {
-            if (state.draws === 7 && state.tearCount === 0) {
-                [7,8].forEach(i => forceTear(i));
-            } else if (state.draws === 8 && state.tearCount === 1) {
-                forceTear(8);
-            }
-        }
-
-        // 强制撕开动画
-        function forceTear(index) {
-            if (!state.cells[index]) {
-                const cell = document.getElementById('grid').children[index];
-                cell.style.transition = 'all 0.3s';
-                cell.style.transform = 'scale(1.2)';
-                
+            // 检查是否应该打开卡包
+            if (state.tearCount >= 2) {
+                state.opened = true;
+                setTimeout(openPack, 100); // 减少延迟
+            } else {
+                // 移除点击效果
                 setTimeout(() => {
-                    cell.style.transform = 'scale(1)';
-                    state.cells[index] = 'tear';
-                    updateCell(index, 'tear');
-                    state.draws++;
-                    if (++state.tearCount === 2) openPack();
-                }, 300);
+                    cell.classList.remove('active');
+                    state.isDrawing = false;
+                }, 150);
+            }
+            
+            // 添加触觉反馈
+            if (window.navigator.vibrate) {
+                navigator.vibrate(10); // 短振动
             }
         }
 
         // 打开卡包
         function openPack() {
-            state.opened = true;
             const success = Math.random() * 100 < getCurrentProbability();
             let player, isSpecial;
             
@@ -514,19 +442,25 @@
                 
                 // 添加闪光效果
                 document.querySelectorAll('.cell').forEach(cell => {
-                    cell.style.boxShadow = '0 0 20px gold';
-                    setTimeout(() => cell.style.boxShadow = '', 1000);
+                    cell.style.boxShadow = '0 0 15px gold';
+                    setTimeout(() => cell.style.boxShadow = '', 800);
                 });
                 
-                alert(`恭喜你，获得${player}！⭐`);
+                // 创建弹窗效果
+                setTimeout(() => {
+                    alert(`恭喜你，获得${player}！⭐`);
+                }, 300);
             } else {
                 player = currentPlayers[Math.floor(Math.random() * currentPlayers.length)];
                 isSpecial = false;
-                alert(`很遗憾，你抽中了普卡（${player}）`);
+                setTimeout(() => {
+                    alert(`很遗憾，你抽中了普卡（${player}）`);
+                }, 300);
             }
             
             // 添加记录到仓库
             addToWarehouse(player, isSpecial);
+            state.isDrawing = false;
         }
 
         // 获取当前概率
@@ -535,32 +469,20 @@
             return stages[state.probabilityStage];
         }
 
-        // 更新格子显示
-        function updateCell(index, type) {
-            const cell = document.getElementById('grid').children[index];
-            cell.className = 'cell disabled ' + type;
-            cell.innerHTML = `
-                <div style="transform: rotateY(180deg); animation: flipIn 0.4s forwards">
-                    ${type === 'prob-up' ? '概率提升' : 
-                     type === 'ability-up' ? '能力提升' : '撕开'}
-                </div>
-            `;
-            
-            // 添加触觉反馈
-            if (window.navigator.vibrate) {
-                navigator.vibrate(30);
-            }
-        }
-
         // 更新显示
         function updateDisplay() {
             document.getElementById('ability').textContent = state.ability;
             document.getElementById('probability').textContent = getCurrentProbability() + '%';
             document.getElementById('draw-count').textContent = state.draws;
+            document.getElementById('tear-count').textContent = state.tearCount;
             
             // 更新能力值颜色
             const abilityElem = document.getElementById('ability');
-            abilityElem.className = state.ability >= 100 ? 'glow' : '';
+            if (state.ability >= 100) {
+                abilityElem.classList.add('glow');
+            } else {
+                abilityElem.classList.remove('glow');
+            }
         }
 
         // 添加到仓库
@@ -605,7 +527,8 @@
                 tearCount: 0,
                 cells: Array(9).fill(null),
                 opened: false,
-                isDrawing: false
+                isDrawing: false,
+                hasTearInFirstSeven: false
             };
             
             const grid = document.getElementById('grid');
